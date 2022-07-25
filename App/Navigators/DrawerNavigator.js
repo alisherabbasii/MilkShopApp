@@ -9,7 +9,7 @@ import BuyCredit from "../Screens/BuyCredit";
 import Feedback from "../Screens/Feedback";
 import CallRate from "../Screens/CallRate";
 import CustomSidebarMenu from "./CustomDrawer";
-import { Ionicons , FontAwesome,AntDesign, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons , FontAwesome,AntDesign, MaterialIcons,Fontisto,Entypo } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 
@@ -24,7 +24,7 @@ const DrawerHome = () => {
       <Drawer.Screen
         name="Home"
         component={BottomTabNavigator}
-        options={{ title: "Home",
+        options={{ title: "Home/Sell",
         drawerIcon: ({focused, size}) => (
           <Ionicons
              name="md-home"
@@ -37,11 +37,11 @@ const DrawerHome = () => {
       <Drawer.Screen
         name="callRate"
         component={CallRate}
-        options={{ title: "Call Rate:700 Credit/Min"
+        options={{ title: "Source Payment"
         ,
         drawerIcon: ({focused, size}) => (
-          <MaterialIcons
-                    name="call"
+          <Fontisto
+                    name="money-symbol"
                     size={24}
                     
                   />
@@ -50,22 +50,22 @@ const DrawerHome = () => {
       <Drawer.Screen
         name="feedback"
         component={Feedback}
-        options={{ title: "Feedback",
+        options={{ title: "Car Rent",
         drawerIcon: ({focused, size}) => (
           <MaterialIcons
-          name="feedback"
+          name="car-rental"
           size={24}
           
         />
        ), }}
       />
       <Drawer.Screen
-        name="Aboutus"
+        name="shopeExpense"
         component={AboutUs}
-        options={{ title: "About Us" ,
+        options={{ title: "Shop Expense" ,
         drawerIcon: ({focused, size}) => (
-          <Ionicons
-             name="md-home"
+          <Entypo
+             name="shop"
              size={size}
              color={focused ? '#7cc' : '#ccc'}
           />
@@ -74,10 +74,22 @@ const DrawerHome = () => {
       <Drawer.Screen
         name="buyCredit"
         component={BuyCredit}
-        options={{ title: "Buy Credit" ,
+        options={{ title: "Home Expense" ,
         drawerIcon: ({focused, size}) => (
             <MaterialIcons
           name="credit-card"
+          size={24}
+          
+        />
+       ),}}
+      />
+        <Drawer.Screen
+        name="directEntry"
+        component={BuyCredit}
+        options={{ title: "Direct Entry Of Milk" ,
+        drawerIcon: ({focused, size}) => (
+            <AntDesign
+          name="enter"
           size={24}
           
         />

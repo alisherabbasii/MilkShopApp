@@ -10,56 +10,60 @@ import SignUp from "./App/Screens/SignUp";
 import SignIn from "./App/Screens/SignIn";
 import Home from "./App/Screens/Home";
 import DrawerHome from "./App/Navigators/DrawerNavigator";
+import store, { authActions,persistor } from './App/Store/Index';
+import {useSelector , Provider} from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
-    </View>
-  );
-}
-function DetailsScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Details Screen</Text>
-    </View>
-  );
-}
 const Stack = createNativeStackNavigator();
+const AppWrapper = () => {
 
+  return (
+    <Provider store={store}> 
+    <PersistGate loading={<Text>Loading...</Text>} persistor={persistor } >
+      <App /> 
+    </PersistGate>
+    </Provider>
+  )
+}
 function App() {
+  const isLogin = useSelector(state=>state.auth.isAuth);
+  console.log(isLogin);
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="SignIn"
-          options={{ title: "Sign In", headerShown: false }}
-          component={SignIn}
-        />
-        <Stack.Screen
-          name="ForgotPass"
-          options={{ title: "Forgot Password" }}
-          component={ForgotPassword}
-        />
-        <Stack.Screen
-          name="SignUp"
-          options={{ title: "Sign Up" }}
-          component={SignUp}
-        />
-        <Stack.Screen
+     
+       
+        {
+          isLogin ?
+          <Stack.Navigator>
+          <Stack.Screen
           name="DrawerHome"
           component={DrawerHome}
           options={{ headerShown: false }}
-        />
-       
-      </Stack.Navigator>
+        /> 
+         </Stack.Navigator>
+         : 
+         <Stack.Navigator>
+        <Stack.Screen
+        name="SignIn"
+        options={{ title: "Sign In", headerShown: false }}
+        component={SignIn}
+      />
+      <Stack.Screen
+        name="ForgotPass"
+        options={{ title: "Forgot Password" }}
+        component={ForgotPassword}
+      />
+      <Stack.Screen
+        name="SignUp"
+        options={{ title: "Sign Up" }}
+        component={SignUp}
+      />
+       </Stack.Navigator>
+        }
+    
     </NavigationContainer>
     
   );
 }
 
-export default App;
+export default AppWrapper;

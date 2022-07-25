@@ -13,26 +13,23 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import Logo from '../components/Logo';
  
 const CustomSidebarMenu = (props) => {
-  const BASE_PATH =
-    'https://us.123rf.com/450wm/blankstock/blankstock1803/blankstock180300207/97193818-phone-sign-icon-support-symbol-call-center-speech-bubble-with-smile-blurred-gradient-design-element-.jpg?ver=6';
-  const proileImage = 'react_logo.png';
+  // const BASE_PATH =
+  //  'https://us.123rf.com/450wm/blankstock/blankstock1803/blankstock180300207/97193818-phone-sign-icon-support-symbol-call-center-speech-bubble-with-smile-blurred-gradient-design-element-.jpg?ver=6';
+  // const proileImage = 'react_logo.png';
  
   return (
     <SafeAreaView style={{flex: 1}}>
       {/*Top Large Image */}
-      <View style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center', backgroundColor:'#FFA500'}}>
-      <Image
+      <View style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center', backgroundColor:'#fff',marginTop:30}}>
+      {/* <Image
         source={{uri: BASE_PATH + proileImage}}
         style={styles.sideMenuProfileIcon}
-      />
-      <Text style={{fontSize:19,fontWeight:'900'}}>
-         User ID: 39re039048230948097A
-      </Text>
-      <Text style={{marginBottom:30,marginTop:10}}>
-          Credits 55
-      </Text>
+      /> */}
+      <Logo />
+      
       </View>
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
